@@ -10,7 +10,6 @@ library(hrbrthemes)
 
 #transforming length variable to be numeric, set as minutes
 
-
 convert_hh_mm_ss_to_numeric <- function(x){
   
   split_x <- strsplit(x, split = ":")
@@ -79,5 +78,3 @@ ggsave(
   plot = corr_scatterplot,
   device = "png"
 )
-
-
