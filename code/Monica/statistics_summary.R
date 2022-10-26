@@ -32,8 +32,3 @@ data2 <- data %>% group_by(topic) %>% summarise_at(c("video_length", "unique_vie
 
 #save the summary statistics table in a csv file
 write.csv(data2, here::here("output/Monica/summary_statistics_by_topic.csv"))
-
-
-
-
-
