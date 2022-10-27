@@ -42,7 +42,7 @@ data=data[order(data$unique_viewers,data$views),]
 bot5=data[2:6,]
 
 #demographics summary
-summary_table=table1(~video_length+views+unique_viewers|topic,data=data)
+summary_table=table1::table1(~video_length+views+unique_viewers|topic,data=data)
 result=as.data.frame(summary_table)
 
 write.csv(top5, here::here("output/Xinyi/top5_popular.csv"))
