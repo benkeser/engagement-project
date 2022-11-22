@@ -26,6 +26,8 @@ Before building the report, please synchronize your R packages with those in thi
 To do this, first make sure your working directory is set as this project directory. 
 Then, type `make install` into your terminal.
 
+If you run into compilation/FORTRAN error, please go [here] (https://cran.r-project.org/bin/macosx/tools/) and download and install "gfortran-6.1.pkg (OS X 10.11+, signed, 64-bit)". Then try`make install` again!
+
 ### How to build and customized the report
 
 The elements of course engagement we're currently looking at for this report are: 
