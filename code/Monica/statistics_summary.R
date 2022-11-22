@@ -24,7 +24,7 @@ convert_hh_mm_ss_to_numeric <- function(x){
   minutes <- unlist(lapply(split_x, get_minutes))
   return(minutes)
 }
-# convert the variable "lenght" from chr to num
+# convert the variable "length" from chr to num
 data$video_length <- convert_hh_mm_ss_to_numeric(data$length)
 
 # summarize statistics of video length and number of unique viewers by group of unique topics

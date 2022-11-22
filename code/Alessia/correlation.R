@@ -6,7 +6,6 @@ data <- read.csv(absolute_path_to_data, header = TRUE)
 
 library(ggpubr)
 library(ggplot2)
-library(hrbrthemes)
 
 #transforming length variable to be numeric, set as minutes
 
@@ -58,15 +57,14 @@ correlation <- cor(data_clean$length_n, data_clean$views, method = "pearson")
 
 saveRDS(
   correlation,
-  file = here::here("output/correlation.rds")
+  file = here::here("output/Alessia/correlation.rds")
 )
 
 #making a scatter plot with a fitted line
 
 corr_scatterplot <- ggplot(data_clean, aes(x=length_n, y=views)) +
   geom_point() +
-  geom_smooth(method=lm , color="red", fill="#69b3a2", se=TRUE) +
-  theme_ipsum() +
+  geom_smooth(method=lm) +
   ggtitle("Relationship Between Length of Video and Total Views") +
   xlab("Length of Video in Minutes") +
   ylab("Total Views of Video")
@@ -74,7 +72,7 @@ corr_scatterplot <- ggplot(data_clean, aes(x=length_n, y=views)) +
 corr_scatterplot
 
 ggsave(
-  here::here("output/correlation_scatterplot.png"),
+  here::here("output/Alessia/correlation_scatterplot.png"),
   plot = corr_scatterplot,
   device = "png"
 )
