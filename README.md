@@ -20,6 +20,10 @@ The project folder currently contains the following:
 8) Makefile
 - used to easily create the report from the command line (see below for instructions)
 
+### Synchronizing R packages
+
+To do this type `make install` into your terminal
+
 ### How to build and customized the report
 
 The elements of course engagement we're currently looking at for this report are: 
