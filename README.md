@@ -22,7 +22,9 @@ The project folder currently contains the following:
 
 ### Synchronizing R packages
 
-To do this type `make install` into your terminal
+Before building the report, please synchronize your R packages with those in this project! 
+To do this, first make sure your working directory is set as this project directory. 
+Then, type `make install` into your terminal.
 
 ### How to build and customized the report
 

@@ -21,4 +21,4 @@ clean:
 
 .PHONY: install
 install:
-	Rscript -e "renv::restore(prompt = FALSE)"
+	Rscript -e "renv::activate()" && Rscript -e "renv::restore(prompt = FALSE)"
