@@ -5,6 +5,13 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
+```{r, read-config, include = FALSE}
+which_report <- Sys.getenv("REPORT_TYPE")
+param_list <- config::get(
+  config = which_report
+)
+```
+
 ```{r, set-chunk-opts, echo = FALSE}
 library(knitr)
 opts_chunk$set(
@@ -18,69 +25,72 @@ data <- read.csv(
 )
 ```
 
-## Statistics Summary
-Here we look at summary statistics for our engagement data
+## Summary Statistics
+Some summary statistics for our engagement data:
 
-```{r, summary-stats}
+```{r, summary-stats, eval = param_list$summary}
+# read in Monica's summary statistics data
 summary_stats <- read.csv(
   here::here("output/Monica/summary_statistics_by_topic.csv"), header = TRUE
 )
 
+# cleaning/editing the data
 summary_stats <- subset(summary_stats, select = -c(X))
 summary_stats[,c("video_length","unique_viewers")] <- round(summary_stats[,c("video_length","unique_viewers")], digits = 2)
 summary_stats <- summary_stats[order(summary_stats[,"unique_viewers"], decreasing = TRUE),]
 colnames(summary_stats) <- c("Video Topic", "Video Length", "No. of Unique Viewers")
 
+# creating table
 summary_stats_table <- knitr::kable(
    summary_stats
 )
-
 summary_stats_table
 ```
 
-## Top and Bottom 5 Most Popular Videos
-Here we can see our most and least popular videos!
+## Most Popular Videos and Topic Demographics
 
 These are the 5 most popular videos by views:
-```{r, top-5-popular}
+```{r, top-5-popular, eval = param_list$demographics}
+# read in the Xinyi's data
 top5popular <- read.csv(
   here::here("output/Xinyi/top5_popular.csv"), header = TRUE
 )
 
+# cleaning the data
 top5popular <- subset(top5popular, select = -c(X, reupload))
 top5popular[,"video_length"] <- round(top5popular[,"video_length"], digits = 2)
 top5popular <- top5popular[order(top5popular[,"views"], decreasing = TRUE),]
 colnames(top5popular) <- c("Week", "Video Number", "Video Title", "Topic", "Views", "Unique Viewers", "Video Length", "Video Length")
 
+# creating a table
 top5_table <- knitr::kable(
    top5popular
 )
-
 top5_table
 ```
 
 These are the 5 least popular videos:
-```{r, bot-5-popular}
+```{r, bot-5-popular, eval = param_list$demographics}
+# reading in Xinyi's data
 bot5popular <- read.csv(
   here::here("output/Xinyi/bot5_popular.csv"), header = TRUE
 )
 
+# cleaning
 bot5popular <- subset(bot5popular, select = -c(X, reupload))
 bot5popular[,"video_length"] <- round(bot5popular[,"video_length"], digits = 2)
 bot5popular <- bot5popular[order(bot5popular[,"views"]),]
 colnames(bot5popular) <- c("Week", "Video Number", "Video Title", "Topic", "Views", "Unique Viewers", "Video Length", "Video Length")
 
+# making a table
 bot5_table <- knitr::kable(
    bot5popular
 )
-
 bot5_table
 ```
 
-
-## Topic Demographics
-Here we can see topic demographics
-```{r, topic-demographics}
+The following is a table of video topic demographics.
+```{r, topic-demographics, eval = param_list$demographics}
 # reading in the output data for topic demographics
 demo <- read.csv(
   here::here("output/Xinyi/demographics.csv"), header = TRUE
@@ -97,19 +107,10 @@ demo_table <- knitr::kable(
 demo_table
 ```
 
-## Finding Correlation
-Here, we look at the correlation between length of video and number of views.
+## Correlation
 
-```{r, pearson-correlation}
-# Getting the Pearson correlation value from Alessia's output
-correlationValue <- readRDS(
-  file = here::here("output/Alessia/correlation.rds")
-)
-```
-
-This is a scatterplot. The correlation coefficient is `r correlationValue`, suggesting a slightly positive correlation -- where as the length of the video in minutes goes up, so does the total number of views for the video. 
-
-```{r, correlation-scatterplot}
+Here, we look at the correlation between length of video and number of views, shown below in this scatterplot.
+```{r, correlation-scatterplot, eval = param_list$correlation}
 knitr::include_graphics(
   here::here("output/Alessia/correlation_scatterplot.png")
 )

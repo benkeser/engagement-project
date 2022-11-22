@@ -1,3 +1,5 @@
+export REPORT_TYPE = default
+
 report: engagement_report.Rmd \
   summary_stats popular_and_demographics correlation
 	Rscript code/render_report.R
@@ -14,7 +16,7 @@ correlation: code/Alessia/correlation.R course_engagement.csv
 .PHONY: clean
 clean:
 	rm -f output/Alessia/*.png && rm -f output/Alessia/*.rds \
-	&& rm -f output/Monica/*.csv && rm -f output/Xinyi/*.csv && \
+	&& rm -f output/Monica/*.csv && rm -f output/Xinyi/*.csv \
 	&& rm -f *.pdf && rm -f *.html
 
 .PHONY: install

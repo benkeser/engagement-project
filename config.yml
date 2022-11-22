@@ -1,0 +1,24 @@
+default:
+  summary: TRUE
+  demographics: TRUE
+  correlation: TRUE
+
+none:
+  summary: FALSE
+  demographics: FALSE
+  correlation: FALSE
+
+summary:
+  summary: TRUE
+  demographics: FALSE
+  correlation: FALSE
+  
+demographics:
+  summary: FALSE
+  demographics: TRUE
+  correlation: FALSE
+  
+correlation:
+  summary: FALSE
+  demographics: FALSE
+  correlation: TRUE
