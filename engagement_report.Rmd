@@ -25,8 +25,12 @@ data <- read.csv(
 )
 ```
 
+`r if(!param_list$summary) '<!--'`
+
 ## Summary Statistics
 Some summary statistics for our engagement data:
+
+`r if(!param_list$summary) '-->'`
 
 ```{r, summary-stats, eval = param_list$summary}
 # read in Monica's summary statistics data
@@ -47,9 +51,14 @@ summary_stats_table <- knitr::kable(
 summary_stats_table
 ```
 
+`r if(!param_list$demographics) '<!--'`
+
 ## Most Popular Videos and Topic Demographics
 
 These are the 5 most popular videos by views:
+
+`r if(!param_list$summary) '-->'`
+
 ```{r, top-5-popular, eval = param_list$demographics}
 # read in the Xinyi's data
 top5popular <- read.csv(
@@ -69,7 +78,12 @@ top5_table <- knitr::kable(
 top5_table
 ```
 
+`r if(!param_list$demographics) '<!--'`
+
 These are the 5 least popular videos:
+
+`r if(!param_list$demographics) '-->'`
+
 ```{r, bot-5-popular, eval = param_list$demographics}
 # reading in Xinyi's data
 bot5popular <- read.csv(
@@ -89,7 +103,12 @@ bot5_table <- knitr::kable(
 bot5_table
 ```
 
+`r if(!param_list$demographics) '<!--'`
+
 The following is a table of video topic demographics.
+
+`r if(!param_list$demographics) '-->'`
+
 ```{r, topic-demographics, eval = param_list$demographics}
 # reading in the output data for topic demographics
 demo <- read.csv(
@@ -107,9 +126,14 @@ demo_table <- knitr::kable(
 demo_table
 ```
 
+`r if(!param_list$correlation) '<!--'`
+
 ## Correlation
 
 Here, we look at the correlation between length of video and number of views, shown below in this scatterplot.
+
+`r if(!param_list$correlation) '-->'`
+
 ```{r, correlation-scatterplot, eval = param_list$correlation}
 knitr::include_graphics(
   here::here("output/Alessia/correlation_scatterplot.png")
